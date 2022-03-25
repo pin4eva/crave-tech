@@ -1,0 +1,26 @@
+scalar Date
+
+type LoginResponse {
+  id: ID
+  token: String
+  isActive: Boolean
+  user: User
+}
+
+type Query {
+  me: User
+  verifyToken(token: String): User
+  verifyToChangePassword(id: ID, token: String): User
+}
+
+type Mutation {
+  signup(input: SignupInput): User
+  login(email: String, password: String): LoginResponse
+}
+
+input SignupInput {
+  id: ID
+  name: String
+  password: String
+  email: String
+}

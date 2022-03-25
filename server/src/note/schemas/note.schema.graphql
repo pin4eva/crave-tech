@@ -1,0 +1,42 @@
+type Note {
+  id: ID
+  title: String
+  items: [NoteList]
+  author: User
+}
+
+type NoteList {
+  id: ID
+  title: String
+  complected: Boolean
+  note: Note
+}
+
+type Query {
+  getNotes: [Note]
+  getNote(id: ID): Note
+  getNoteLists: [NoteList]
+  getNoteListByNote: [NoteList]
+}
+
+type Mutation {
+  createNote(input: NoteInput): Note
+  updateNote(input: NoteInput): Note
+  deleteNote(id: ID): Note
+  createNoteList(input: NoteListInput): NoteList
+  updateNoteList(input: NoteListInput): NoteList
+  deleteNoteList(id: ID): NoteList
+  markComplected(id: ID): Boolean
+}
+
+input NoteInput {
+  id: ID
+  title: String
+  author: ID
+}
+input NoteListInput {
+  id: ID
+  title: String
+  note: ID
+  complected: Boolean
+}
